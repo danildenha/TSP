@@ -19,9 +19,12 @@ int main() {
     }
     Graph* g = new Graph();
     g->read(graph1);
+
+    //TODO: Find the shortest distance and the shortest path
+    //on the graph
+    //cout << shortestDistance(g) << " " << shortestPath(g) << endl;
+
     g->print();
-
-
     delete g;
     graph1.close();
 
