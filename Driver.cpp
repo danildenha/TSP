@@ -11,6 +11,8 @@
 
 using namespace std;
 
+
+
 int main() {
     ifstream graph1("graph1.txt");
     if (!graph1.is_open()) {
@@ -22,7 +24,8 @@ int main() {
 
     //TODO: Find the shortest distance and the shortest path
     //on the graph
-    //cout << shortestDistance(g) << " " << shortestPath(g) << endl;
+    //cout << "Optimal tour cost = [" << shortestDistance(g) << ", <"
+    // << shortestPath(g) << ">]" << endl;
 
     g->print();
     delete g;
