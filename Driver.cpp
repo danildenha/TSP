@@ -1,22 +1,20 @@
-#include <iostream>
-#include <fstream> 
-#include <sstream> 
-#include <string>
-#include <list> 
-#include <map>
-#include <climits>
-#include <vector>
-#include <assert.h>
+#include <bitset>
 #include "graph.h"
 
 using namespace std;
 
-
+//Find minimal distance for 
+int minDist(const Graph& graph) {
+    return 1;
+};
 
 int main() {
-    ifstream graph1("graph1.txt");
+    string filename;
+    cout << "Enter the filename: ";
+    cin >> filename;
+    ifstream graph1(filename);
     if (!graph1.is_open()) {
-        cout << "Couldn't open graph file" << endl;
+        cerr << "Couldn't open graph file" << endl;
         return 1;
     }
     Graph* g = new Graph();
@@ -24,7 +22,7 @@ int main() {
 
     //TODO: Find the shortest distance and the shortest path
     //on the graph
-    //cout << "Optimal tour cost = [" << shortestDistance(g) << ", <"
+    //cout << "Optimal tour cost = [" << minDist(g) << ", <"
     // << shortestPath(g) << ">]" << endl;
 
     g->print();
