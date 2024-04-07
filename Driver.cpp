@@ -1,14 +1,9 @@
 #include <bitset>
+#include <string>
 #include "graph.h"
+#include "tspProblem.h"
 
 using namespace std;
-
-//Find minimal distance for 
-int minDist(Graph& graph) {
-    size_t size = graph.getNumVertices();
-
-    return size;
-};
 
 int main() {
     string filename;
@@ -26,7 +21,7 @@ int main() {
     //on the graph
     //cout << "Optimal tour cost = [" << minDist(g) << ", <"
     // << shortestPath(g) << ">]" << endl;
-    cout << minDist(g) << "----" << endl;
+    //cout << minDist(g) << "----" << endl;
 
     g.print();
     graph1.close();
