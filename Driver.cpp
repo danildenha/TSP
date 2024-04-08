@@ -19,12 +19,8 @@ int main() {
     tspProblem prob1(g);
     prob1.print();
 
-    //TODO: Find the shortest distance and the shortest path
-    //on the graph
-    //cout << "Optimal tour cost = [" << minDist(g) << ", <"
-    // << shortestPath(g) << ">]" << endl;
-    //cout << minDist(g) << "----" << endl;
-    graph1.close();
 
+
+    graph1.close();
     return 0;
 }
