@@ -1,0 +1,4 @@
+1	Chicago 	1 0	 	3 15	4 20
+2	London	1 5	2 0	3 9	4 10
+3	NewYork	1 6	  3 0	4 12
+4	Kyiv	1 8	2 8	3 9	4 0
