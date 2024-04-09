@@ -34,8 +34,9 @@ public:
     //FOR DEBUGGING ONLY
     void print() {
         unsigned int bestTourCost = computeMinTourCost( 0, mainSet.reset(0));
-        cout << "< " <<  bestTourCost;
+        cout << "Optimal Tour Cost = [" <<  bestTourCost << ", <";
         printMinCostTour();
+        cout << ">]";
         cout << endl;
 
     }
@@ -52,7 +53,7 @@ public:
         unsigned int best_j = -1;
         bool found_at_least_one_vertex = false;
         //iterate through every subset. J = SUBSET
-        for (unsigned int j = 0; j < size; j++) {
+        for (unsigned int j = 1; j < size; j++) {
             if (S[j] == 1){
                 unsigned int aCost = W.getEdgeCost(i, j) + computeMinTourCost(j, S.reset(j));
                 S.set(j);
@@ -84,7 +85,7 @@ public:
         cout << W.getVertexName(start_vertex); // print the starting vertex
 
         while (remaining_vertices.any()) {
-            cout << " -> ";
+            cout << ",";
             //unsigned long next_vertex = P[current_vertex][remaining_vertices.to_ulong()];
             unsigned long currIndex = remaining_vertices.to_ulong();
             start_vertex = P[start_vertex][currIndex];
@@ -95,7 +96,7 @@ public:
             //current_vertex = next_vertex;
         }
 
-        cout << " -> " << W.getVertexName(0);
+        cout << "," << W.getVertexName(0);
     }
 
 };
