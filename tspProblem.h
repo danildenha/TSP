@@ -34,10 +34,18 @@ public:
     //FOR DEBUGGING ONLY
     void print() {
         unsigned int bestTourCost = computeMinTourCost( 0, mainSet.reset(0));
-        cout << "Optimal Tour Cost = [" <<  bestTourCost << ", <";
-        printMinCostTour();
-        cout << ">]";
-        cout << endl;
+        if (bestTourCost == INT_MAX)
+        {
+            cout << "No Hamiltonian Cycle" << endl;
+        }
+        else
+        {
+            cout << "Optimal Tour Cost = [" <<  bestTourCost << ", <";
+            printMinCostTour();
+            cout << ">]";
+            cout << endl;
+        }
+        
 
     }
 
