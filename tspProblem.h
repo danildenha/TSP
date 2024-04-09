@@ -27,21 +27,24 @@ public:
         mainSet = set;
         //rows: number of vertices
         //cols: number of possible subsets
-        D.resize(size, vector<int>(set.to_ulong()));
-        P.resize(size, vector<int>(set.to_ulong()));
+        D.resize(size, vector<int>(set.to_ulong(), -1));
+        P.resize(size, vector<int>(set.to_ulong(), -1));
     }
 
     //FOR DEBUGGING ONLY
     void print() {
-        unsigned int bestTourCost = computeMinTourCost( 0, mainSet);
-        cout << "< " <<  bestTourCost << ">" << endl;
+        unsigned int bestTourCost = computeMinTourCost( 0, mainSet.reset(0));
+        cout << "< " <<  bestTourCost;
+        printMinCostTour();
+        cout << endl;
 
     }
 
     unsigned int computeMinTourCost(unsigned int i, bitset<MAX_BITS> S) {
         int subsetVal = S.to_ulong();
         //chekc if subset is empty
-        if (S.none()) return D[i][0];
+        if (S.none()) 
+            return W.getEdgeCost(i, 0);
         //if value already computed, use it 
         if (D[i][subsetVal] >= 0) return D[i][subsetVal];
 
@@ -49,10 +52,11 @@ public:
         unsigned int best_j = -1;
         bool found_at_least_one_vertex = false;
         //iterate through every subset. J = SUBSET
-        for (unsigned int j = 1; j < size; j++) {
-            if (S.test(j - 1)) { 
-                unsigned int aCost = W.getEdgeCost(i, j) + computeMinTourCost(j, S.reset(j - 1));
-
+        for (unsigned int j = 0; j < size; j++) {
+            if (S[j] == 1){
+                unsigned int aCost = W.getEdgeCost(i, j) + computeMinTourCost(j, S.reset(j));
+                S.set(j);
+                
                 //check if we found smaller cost
                 if (aCost < bestCost) {
                     found_at_least_one_vertex = true;
@@ -76,19 +80,22 @@ public:
         //reset first vertex to 0
         remaining_vertices.reset(start_vertex);
 
-        unsigned int current_vertex = start_vertex;
-        cout << current_vertex + 1; // print the starting vertex
+        //unsigned int current_vertex = start_vertex;
+        cout << W.getVertexName(start_vertex); // print the starting vertex
 
         while (remaining_vertices.any()) {
             cout << " -> ";
-            unsigned int next_vertex = P[current_vertex][remaining_vertices.to_ulong()];
-            cout << next_vertex + 1;
-            remaining_vertices.reset(next_vertex);
+            //unsigned long next_vertex = P[current_vertex][remaining_vertices.to_ulong()];
+            unsigned long currIndex = remaining_vertices.to_ulong();
+            start_vertex = P[start_vertex][currIndex];
+
+            cout << W.getVertexName(start_vertex);
+            remaining_vertices.reset(start_vertex);
             //update curr vertex
-            current_vertex = next_vertex;
+            //current_vertex = next_vertex;
         }
 
-        cout << " -> " << start_vertex + 1;
+        cout << " -> " << W.getVertexName(0);
     }
 
 };
